@@ -12,6 +12,21 @@ namespace generic_control_toolbox
     }
   }
 
+  WrenchManager::WrenchManager(ros::NodeHandle &nh):nh_(nh)
+  {
+     ROS_INFO(" I'm here and I do stuff \n");
+
+    if (!nh_.getParam("wrench_manager/max_tf_attempts", max_tf_attempts_))
+    {
+      ROS_WARN("WrenchManager: Missing max_tf_attempts parameter, setting default");
+      max_tf_attempts_ = 5;
+    }
+    else
+    {
+      ROS_INFO("I got it, max_tf_attempts : %d ", max_tf_attempts_);
+    }
+  }
+
   WrenchManager::~WrenchManager(){}
 
   bool WrenchManager::initializeWrenchComm(const std::string &end_effector, const std::string &sensor_frame, const std::string &gripping_point_frame, const std::string &sensor_topic, const std::string &calib_matrix_param)
@@ -136,7 +151,6 @@ namespace generic_control_toolbox
       ROS_ERROR("WrenchManager: got wrench message from sensor at frame %s, which was not configured in the wrench manager", msg->header.frame_id.c_str());
       return;
     }
-
     // apply computed sensor intrinsic calibration
     Eigen::Matrix<double, 6, 1> wrench_eig;
     tf::wrenchMsgToEigen(msg->wrench, wrench_eig);

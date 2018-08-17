@@ -156,7 +156,7 @@ namespace generic_control_toolbox
     bool getVelIK(const std::string &end_effector_link, const sensor_msgs::JointState &state, const KDL::Twist &in, KDL::JntArray &out) const;
 
     /**
-      Returns the jacobian the requested end-effector's chain.
+      Returns the jacobian of the requested end-effector's chain.
 
       @param end_effector_link The name of the requested end-effector.
       @param state The current robot joint state.

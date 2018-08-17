@@ -24,6 +24,8 @@ namespace generic_control_toolbox
     WrenchManager();
     ~WrenchManager();
 
+    // Oh yes, I just did. 
+    WrenchManager(ros::NodeHandle &nh);
     /**
       Adds a new wrench subscription. The wrench manager stores the rigid transform between the
       F/T sensor and the gripping point.

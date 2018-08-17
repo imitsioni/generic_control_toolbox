@@ -21,7 +21,7 @@ namespace generic_control_toolbox
     if (i < 0)
     {
       ROS_ERROR_ONCE("Key %s was not initialized", key.c_str());
-      ROS_DEBUG_THROTTLE(10, "Key %s was not initialized", key.c_str());
+      ROS_DEBUG_THROTTLE(10, "Key %s was not initialized.", key.c_str());
       return false;
     }
 
